@@ -2,7 +2,8 @@
 
 Personal overrides on top of Omarchy's defaults, tuned for a MacBook Air 2017.
 
-- `input.lua`: `latam-mac` layout (`~/.config/xkb/symbols/latam-mac`), Mac-style
+- `input.lua`: `latam-mac` layout (`xkb/symbols/latam-mac`, symlinked from
+  `~/.config/xkb/symbols/latam-mac`), Mac-style
   trackpad (natural scroll, two-finger right click), 3-finger workspace swipe.
 - `bindings.lua`: F3 = Mission Control (hyprexpo), F4 = apps menu,
   CTRL+SHIFT+3..8 = screenshots / recording / color picker / OCR.
@@ -27,5 +28,6 @@ Personal overrides on top of Omarchy's defaults, tuned for a MacBook Air 2017.
     git clone https://github.com/DannieLudens/hypr-config ~/.config/hypr
     ln -s ~/.config/hypr/scripts/hyprexpo-ensure ~/.local/bin/hyprexpo-ensure
     ln -s ~/.config/hypr/scripts/hypr-config-check.hook ~/.config/omarchy/hooks/post-update.d/
-    # also needed: ~/.config/xkb/symbols/latam-mac (not in this repo), and
+    mkdir -p ~/.config/xkb/symbols && ln -s ~/.config/hypr/xkb/symbols/latam-mac ~/.config/xkb/symbols/
+    # then install hyprexpo:
     # sudo pacman -S hyprpm && hyprpm add https://github.com/sandwichfarm/hyprexpo && hyprpm enable hyprexpo

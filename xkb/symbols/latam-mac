@@ -1,0 +1,27 @@
+// Custom variant matching the physical printing of a real Apple
+// "Spanish (Latin America)" keyboard (MacBook Air 7,2 and similar).
+//
+// The stock Linux "latam" layout was written for a generic PC keyboard and
+// puts accents/braces/cedilla on different physical keys than what Apple
+// actually silkscreened on this hardware. This variant starts from the
+// stock layout and only relocates the keys that were confirmed mismatched
+// against a photo of the real keycaps.
+//
+//   TLDE (left of 1):        base=º  shift=ª  altgr=\
+//   AD11 (right of P):       base=`  shift=^  altgr=[
+//   AD12 (right of AD11):    base=+  shift=*  altgr=]   (base/shift already matched)
+//   AC11 (right of Ñ):       base=´  shift=¨  altgr={
+//   BKSL (right of AC11):    base=ç  shift=Ç  altgr=}
+
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+    include "latam(basic)"
+
+    name[Group1]="Spanish (Latin American, Apple)";
+
+    key <TLDE> { [    ordmasculine,    ordfeminine,       backslash ] };
+    key <AD11> { [      dead_grave, dead_circumflex,     bracketleft ] };
+    key <AD12> { [            plus,       asterisk,    bracketright ] };
+    key <AC11> { [      dead_acute,  dead_diaeresis,       braceleft ] };
+    key <BKSL> { [        ccedilla,       Ccedilla,      braceright ] };
+};
