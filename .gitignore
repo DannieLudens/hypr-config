@@ -1,0 +1,7 @@
+# Backups that already existed when this repo was created (kept on disk,
+# their contents are in the first commit's history anyway).
+*.bak.1788913565
+*.pre-restore.*
+
+# NOT ignoring other *.bak.* on purpose: if an Omarchy update replaces a file
+# and leaves a new backup, it shows up in `git status` as untracked.

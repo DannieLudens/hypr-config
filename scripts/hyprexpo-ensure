@@ -1,0 +1,14 @@
+#!/bin/bash
+# Load hyprexpo (F3 / Mission Control) at login. If it doesn't load (Hyprland
+# or its libraries were updated and the plugin needs rebuilding), show a
+# notification whose click opens a terminal that rebuilds it. -f forces the
+# headers to be regenerated: hyprpm sometimes believes they're current when
+# they aren't (happened on 2026-11-10 with aquamarine 0.14 -> 0.15).
+
+hyprpm reload -n >/dev/null 2>&1
+
+if ! hyprctl plugin list 2>/dev/null | grep -q hyprexpo; then
+  omarchy-notification-send -u critical "F3 (Mission Control) needs repair" \
+    "Hyprland was updated. Click to rebuild hyprexpo (it will ask for your password)." \
+    --exec omarchy-launch-floating-terminal-with-presentation "hyprpm update -f && hyprpm reload"
+fi
