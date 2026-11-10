@@ -6,6 +6,9 @@ Personal overrides on top of Omarchy's defaults, tuned for a MacBook Air 2017.
   trackpad (natural scroll, two-finger right click), 3-finger workspace swipe.
 - `bindings.lua`: F3 = Mission Control (hyprexpo), F4 = apps menu,
   CTRL+SHIFT+3..8 = screenshots / recording / color picker / OCR.
+- `scripts/hypr-config-check.hook`: Omarchy post-update hook (symlinked in
+  `~/.config/omarchy/hooks/post-update.d/`); notifies if an update changed
+  anything here.
 - `autostart.lua` + `scripts/hyprexpo-ensure`: loads hyprexpo at login; if it
   fails (Hyprland updated), shows a notification to rebuild it with
   `hyprpm update -f && hyprpm reload`. `~/.local/bin/hyprexpo-ensure` is a

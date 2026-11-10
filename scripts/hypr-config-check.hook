@@ -1,0 +1,16 @@
+#!/bin/bash
+# Omarchy post-update hook: if the update modified ~/.config/hypr (changed
+# files or new *.bak.* backups), notify. Clicking the notification opens a
+# terminal with the summary and the diff.
+repo="$HOME/.config/hypr"
+[[ -d $repo/.git ]] || exit 0
+
+changes=$(git -C "$repo" status --porcelain)
+[[ -z $changes ]] && exit 0
+
+n=$(wc -l <<<"$changes")
+omarchy-notification-send -u critical "The update touched your Hyprland config" \
+  "$n change(s) in ~/.config/hypr. Click to see what changed." \
+  --exec omarchy-launch-floating-terminal-with-presentation \
+  "cd ~/.config/hypr && git status --short && echo && git --no-pager diff --stat && echo && echo 'Restore your version: git checkout -- <file>   |   Keep the change: git add -A && git commit -m update' && read -rp 'Enter to see the full diff...' && git diff"
+exit 0
