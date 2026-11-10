@@ -20,3 +20,12 @@ Personal overrides on top of Omarchy's defaults, tuned for a MacBook Air 2017.
     git status        # new *.bak.* files or modified files = Omarchy touched something
     git diff          # see exactly what changed
     git checkout -- <file>   # restore your version of a file
+    git push                 # after committing, back it up to GitHub
+
+## Restore on a fresh install
+
+    git clone https://github.com/DannieLudens/hypr-config ~/.config/hypr
+    ln -s ~/.config/hypr/scripts/hyprexpo-ensure ~/.local/bin/hyprexpo-ensure
+    ln -s ~/.config/hypr/scripts/hypr-config-check.hook ~/.config/omarchy/hooks/post-update.d/
+    # also needed: ~/.config/xkb/symbols/latam-mac (not in this repo), and
+    # sudo pacman -S hyprpm && hyprpm add https://github.com/sandwichfarm/hyprexpo && hyprpm enable hyprexpo
